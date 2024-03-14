@@ -1,13 +1,12 @@
+import { FormAreaComponent } from './components/form-area/form-area.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TextareaComponent } from './components/textarea/textarea.component';
-import { SubmitBtnComponent } from './components/submit-btn/submit-btn.component';
 import { OutputAreaComponent } from './components/output-area/output-area.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TextareaComponent, SubmitBtnComponent, OutputAreaComponent],
+  imports: [RouterOutlet, FormAreaComponent, OutputAreaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
