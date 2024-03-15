@@ -1,11 +1,12 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RequestBody } from '../../interfaces/requestBody';
+import { ParametersComponent } from '../parameters/parameters.component';
 
 @Component({
   selector: 'app-form-area',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ParametersComponent],
   templateUrl: './form-area.component.html',
   styleUrl: './form-area.component.css'
 })
@@ -15,6 +16,7 @@ export class FormAreaComponent {
   content!: string;
   prompt: string = '';
   error: string = '';
+  negativePrompt: string = 'cartoon, illustration, animation, face, male, female';
 
   constructor(){
   }
