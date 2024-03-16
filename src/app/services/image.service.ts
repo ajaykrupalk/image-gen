@@ -1,29 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RequestBody } from '../interfaces/requestBody';
-import * as fal from "@fal-ai/serverless-client";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
-  private apiUrl: string = 'https://api.sampleapis.com/coffee/hot'
+  private apiUrl: string = 'https://fal.run/fal-ai/fast-sdxl'
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  async getImage(req: RequestBody){
-
-    const result = await fal.subscribe("fal-ai/fast-sdxl", {
-      input: {
-        prompt: "photo of a rhino dressed suit and tie sitting at a table in a bar with a bar stools, award winning photography, Elke vogelsang"
-      },
-      logs: true,
-      onQueueUpdate: (update) => {
-        if (update.status === "IN_PROGRESS") {
-          update.logs.map((log) => log.message).forEach(console.log);
-        }
-      },
-    });
-    return this.http.get(this.apiUrl)
+  getImage(req: RequestBody) {
+    return this.http.post(this.apiUrl, {
+      prompt: req.prompt,
+      negative_prompt: req.negativePrompt,
+      image_size: 'landscape_16_9',
+      num_inference_steps: req.inferenceSteps,
+      guidance_scale: req.guidanceScale,
+      num_images: 1,
+      enable_safety_checker: true
+    })
   }
 }
