@@ -12,8 +12,7 @@ import { RequestBody } from '../../interfaces/requestBody';
 
 export class FormAreaComponent {
   @Output() onSubmitData: EventEmitter<RequestBody> = new EventEmitter();
-  content!: string;
-  prompt: string = '';
+  prompt!: string;
   negativePrompt: string = 'cartoon, illustration, animation, face, male, female';
   inferenceSteps: number = 25;
   guidanceScale: number = 7.5;
@@ -32,8 +31,8 @@ export class FormAreaComponent {
   }
 
   onClick(){
-    if(!this.content){
-      this.error = 'Please enter content for QR'
+    if(!this.prompt){
+      this.error = 'Please enter a prompt';
       return;
     }
 
@@ -42,7 +41,6 @@ export class FormAreaComponent {
     }
 
     const req = {
-      content: this.content,
       prompt: this.prompt,
       negativePrompt: this.negativePrompt,
       inferenceSteps: this.inferenceSteps,
@@ -50,8 +48,7 @@ export class FormAreaComponent {
     }
 
     this.onSubmitData.emit(req);
-
-    this.content = '';
+    
     this.prompt = '';
     this.negativePrompt = 'cartoon, illustration, animation, face, male, female';
     this.inferenceSteps = 25;

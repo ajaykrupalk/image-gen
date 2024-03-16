@@ -1,32 +1,23 @@
 <div class="w-96">
     <div class="mt-2">
-        <label for="text-content" class="block font-medium text-sm mb-2">
-            Content <span class="inline-block text-red-600 font-bold">*</span>
-            <span class="block font-normal text-xs">Enter the content for the QR code</span>
-        </label>
-        <textarea #textareaContent id="text-content" name="text-content" placeholder="QR Code content or URL"
-            [(ngModel)]="content" (input)="adjustHeight(textareaContent)"
-            class="ring-1 ring-gray-200 p-2 w-full overflow-y-hidden max-h-[120px] resize-none text-sm rounded-md focus:ring-blue-500 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"></textarea>
-        <span class="text-xs text-red-500 font-medium">{{ error }}</span>
-    </div>
-    <div class="mt-2">
         <label for="qr-prompt" class="block font-medium text-sm mb-2">
-            Prompt
+            Prompt <span class="inline-block text-red-600 font-bold">*</span>
             <span class="block font-normal text-xs">Enter a prompt for the image</span>
         </label>
         <textarea #textareaPrompt id="qr-prompt" name="qr-prompt"
             placeholder="e.g. A sky view of a colorful lakes and rivers flowing through the desert"
             [(ngModel)]="prompt" (input)="adjustHeight(textareaPrompt)"
             class="ring-1 ring-gray-200 p-2 w-full overflow-y-hidden max-h-[120px] resize-none text-sm rounded-md focus:ring-blue-500 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"></textarea>
+        <span class="text-xs text-red-500 font-medium">{{ error }}</span>
     </div>
     <div class="mt-2">
         <label for="qr-negative-prompt" class="block font-medium text-sm mb-2">
             Negative Prompt
             <span class="block font-normal text-xs">Use it to address details that you don't want in the image</span>
         </label>
-        <textarea id="qr-negative-prompt" name="qr-negative-prompt"
+        <textarea #textnegativePrompt id="qr-negative-prompt" name="qr-negative-prompt"
             placeholder="e.g. cartoon, illustration, animation, face, male, female"
-            [(ngModel)]="negativePrompt"
+            [(ngModel)]="negativePrompt" (input)="adjustHeight(textnegativePrompt)"
             class="ring-1 ring-gray-200 p-2 w-full overflow-y-hidden max-h-[120px] resize-none text-sm rounded-md focus:ring-blue-500 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"></textarea>
     </div>
     <div class="mt-2 w-full h-max border-2 border-gray-200 rounded-md">

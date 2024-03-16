@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { OutputAreaComponent } from './components/output-area/output-area.component';
 import { RequestBody } from './interfaces/requestBody';
+import { ImageService } from './services/image.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,12 @@ import { RequestBody } from './interfaces/requestBody';
 })
 export class AppComponent {
   title = 'qr-code';
+  imgUrl: string = '../assets/image-02-stroke-rounded.svg'
+
+  constructor(private imageService: ImageService){}
 
   sendRequest(req: RequestBody) {
-    console.log(req)
+    this.imageService.getImage(req).subscribe(res => console.log(res));
+    // return this.http.post('http://localhost:500/', req)
   }
 }
