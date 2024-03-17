@@ -65,7 +65,7 @@ export class FormAreaComponent {
         // Update progress bar width
         progress.style.width = width + '%';
       }
-    }, 3);
+    }, 20);
     
     this.prompt = '';
     this.negativePrompt = 'cartoon, illustration, animation, face, male, female';
