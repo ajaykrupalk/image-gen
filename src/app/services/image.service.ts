@@ -6,7 +6,7 @@ import { RequestBody } from '../interfaces/requestBody';
   providedIn: 'root'
 })
 export class ImageService {
-  private apiUrl: string = 'http://localhost:3000/fal-ai'
+  private apiUrl: string = 'https://image-gen-koq0.onrender.com/fal-ai'
 
   constructor(private http: HttpClient) { }
 
