@@ -5,8 +5,8 @@
             <span class="block font-normal text-xs">Enter a prompt for the image</span>
         </label>
         <textarea #textareaPrompt id="qr-prompt" name="qr-prompt"
-            placeholder="e.g. A sky view of a colorful lakes and rivers flowing through the desert"
-            [(ngModel)]="prompt" (input)="adjustHeight(textareaPrompt)"
+            placeholder="e.g. A sky view of colorful lakes and rivers flowing through the desert" [(ngModel)]="prompt"
+            (input)="adjustHeight(textareaPrompt)"
             class="ring-1 ring-gray-200 p-2 w-full overflow-y-hidden max-h-[120px] resize-none text-sm rounded-md focus:ring-blue-500 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"></textarea>
         <span class="text-xs text-red-500 font-medium">{{ error }}</span>
     </div>
@@ -16,15 +16,16 @@
             <span class="block font-normal text-xs">Use it to address details that you don't want in the image</span>
         </label>
         <textarea #textnegativePrompt id="qr-negative-prompt" name="qr-negative-prompt"
-            placeholder="e.g. cartoon, illustration, animation, face, male, female"
-            [(ngModel)]="negativePrompt" (input)="adjustHeight(textnegativePrompt)"
+            placeholder="e.g. cartoon, illustration, animation, face, male, female" [(ngModel)]="negativePrompt"
+            (input)="adjustHeight(textnegativePrompt)"
             class="ring-1 ring-gray-200 p-2 w-full overflow-y-hidden max-h-[120px] resize-none text-sm rounded-md focus:ring-blue-500 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"></textarea>
     </div>
     <div class="mt-2 w-full h-max border-2 border-gray-200 rounded-md">
         <div class="flex items-center gap-x-0.5 border-b-2 border-gray-100 p-1">
             <span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-gray-400" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-gray-400" width="15" height="15"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M4 8h4v4h-4z" />
                     <path d="M6 4l0 4" />
@@ -46,25 +47,29 @@
                     <span class="block font-normal text-xs">The number of inference steps to perform</span>
                 </label>
                 <div class="flex items-center justify-between gap-2">
-                    <input type="range" min="0" max="100" value="25" id="infSteps" name="infSteps" [(ngModel)]="inferenceSteps" class="w-full mt-1 accent-indigo-500 cursor-pointer">
+                    <input type="range" min="0" max="100" value="25" id="infSteps" name="infSteps"
+                        [(ngModel)]="inferenceSteps" class="w-full mt-1 accent-indigo-500 cursor-pointer">
                     <div class="mt-1 w-8 h-max p-1 bg-gray-100 rounded-md text-center text-xs">{{inferenceSteps}}</div>
                 </div>
             </div>
             <div>
                 <label for="infSteps">
                     Guidance Scale
-                    <span class="block font-normal text-xs">Measure of how close you want the model to stick to your prompt</span>
+                    <span class="block font-normal text-xs">Measure of how close you want the model to stick to your
+                        prompt</span>
                 </label>
                 <div class="flex items-center justify-between gap-2">
-                    <input type="range" min="0" max="20" value="7.5" id="guidScale" name="guidScale"  [(ngModel)]="guidanceScale" class="w-full mt-1 accent-indigo-500 cursor-pointer">
+                    <input type="range" min="0" max="20" value="7.5" id="guidScale" name="guidScale"
+                        [(ngModel)]="guidanceScale" class="w-full mt-1 accent-indigo-500 cursor-pointer">
                     <div class="mt-1 w-8 h-max p-1 bg-gray-100 rounded-md text-center text-xs">{{guidanceScale}}</div>
                 </div>
             </div>
         </div>
     </div>
     <button
-        class="p-1.5 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-medium mt-2 w-full text-center hover:bg-indigo-50"
-        (click)="onClick()">
+        class="relative p-1.5 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-medium mt-2 w-full text-center hover:bg-indigo-50"
+        (click)="onClick()" [disabled]="isDisabled">
         Generate
+        <div class="absolute h-1 bg-indigo-400 top-0 left-0" id="progress_bar"></div>
     </button>
 </div>

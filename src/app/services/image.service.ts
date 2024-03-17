@@ -6,19 +6,16 @@ import { RequestBody } from '../interfaces/requestBody';
   providedIn: 'root'
 })
 export class ImageService {
-  private apiUrl: string = 'https://fal.run/fal-ai/fast-sdxl'
+  private apiUrl: string = 'http://localhost:3000/fal-ai'
 
   constructor(private http: HttpClient) { }
 
-  getImage(req: RequestBody) {
+  getImage(req: RequestBody): any {
     return this.http.post(this.apiUrl, {
       prompt: req.prompt,
       negative_prompt: req.negativePrompt,
-      image_size: 'landscape_16_9',
       num_inference_steps: req.inferenceSteps,
-      guidance_scale: req.guidanceScale,
-      num_images: 1,
-      enable_safety_checker: true
+      guidance_scale: req.guidanceScale
     })
   }
 }

@@ -14,12 +14,15 @@ import { ImageService } from './services/image.service';
 })
 export class AppComponent {
   title = 'qr-code';
-  imgUrl: string = '../assets/image-02-stroke-rounded.svg'
+  imgUrl: string = 'https://fal-cdn.batuhan-941.workers.dev/files/kangaroo/XpgOwD1hoQKK7uUuavigQ.jpeg';
+  promptMsg: string = 'A sky view of colorful lakes and rivers flowing through the desert';
 
   constructor(private imageService: ImageService){}
 
   sendRequest(req: RequestBody) {
-    this.imageService.getImage(req).subscribe(res => console.log(res));
-    // return this.http.post('http://localhost:500/', req)
+    this.imageService.getImage(req).subscribe((res:any) => {
+      this.imgUrl = res.images[0].url
+      this.promptMsg = res.prompt
+    });
   }
 }

@@ -9,4 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class OutputAreaComponent {
   @Input() imgUrl!: string;
+  @Input() promptMsg!: string;
 }

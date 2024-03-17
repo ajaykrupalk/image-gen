@@ -13,6 +13,7 @@ import { RequestBody } from '../../interfaces/requestBody';
 export class FormAreaComponent {
   @Output() onSubmitData: EventEmitter<RequestBody> = new EventEmitter();
   prompt!: string;
+  isDisabled: boolean = false;
   negativePrompt: string = 'cartoon, illustration, animation, face, male, female';
   inferenceSteps: number = 25;
   guidanceScale: number = 7.5;
@@ -47,12 +48,30 @@ export class FormAreaComponent {
       guidanceScale: this.guidanceScale
     }
 
+    this.isDisabled = true;
+
     this.onSubmitData.emit(req);
+
+    const progress = document.getElementById("progress_bar") as HTMLElement;
+
+    let width = 0;
+    const interval = setInterval(() => {
+      if (width >= 100) {
+        clearInterval(interval);
+        this.isDisabled = false; // Re-enable button
+        progress.style.width = 0 + '%'; // Hide progress bar
+      } else {
+        width++;
+        // Update progress bar width
+        progress.style.width = width + '%';
+      }
+    }, 3);
     
     this.prompt = '';
     this.negativePrompt = 'cartoon, illustration, animation, face, male, female';
     this.inferenceSteps = 25;
     this.guidanceScale = 7.5;
     this.error = '';
+    this.isDisabled = false;
   }
 }
